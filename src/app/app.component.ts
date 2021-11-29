@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'serverusers';
+	readonly ncol:number = 10
+	readonly noff:number = (12-this.ncol)/2
 }

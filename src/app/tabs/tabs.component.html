@@ -1,0 +1,9 @@
+
+<ul class="nav nav-tabs auto">
+	<li class="nav-item" *ngFor="let tab of tabs; let indice=index">
+		<a href="#{{tab.link}}" class="nav-link" [ngClass]="{active:tab.active}" (click)="attiva(indice)">{{tab.name}}</a>
+	</li>
+</ul>
+
+
+	
