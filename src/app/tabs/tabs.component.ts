@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Tab } from '../models/Tab';
+import { TabsService } from '../services/Tabs.service';
 
 @Component({
   selector: 'app-tabs',
@@ -8,16 +9,7 @@ import { Tab } from '../models/Tab';
 })
 export class TabsComponent {
 
-	tabs:Tab[]= [
-		new Tab("Home","#",true),
-		new Tab("Servers","#"),
-		new Tab("Users","#")
-	]
+	tabs = TabsService;
+	constructor(private tabservice: TabsService){}
 
-	attiva(indice:number){
-		for (let ind in this.tabs){
-			let i = parseInt(ind);
-			this.tabs[i].active=i===indice;
-		}
-	}
 }

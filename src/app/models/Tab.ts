@@ -1,10 +1,12 @@
+import { TabsEnum } from "./Tabs.enum";
+
 export class Tab {
 	private _active:boolean; 
 	private _name:string; 
 	private _link:string; 
 
-	constructor(name:string, link:string,active?:boolean){
-		this._name=name;
+	constructor(name:TabsEnum, link:string,active?:boolean){
+		this._name=TabsEnum[name];
 		this._link=link;
 		this._active=active?true:false; //avoiding undefined assign 
 	}
