@@ -1,7 +1,7 @@
 
-<ul class="nav nav-tabs auto">
-	<li class="nav-item" *ngFor="let tab of tabs.tabs; let indice=index">
-		<a routerLink="{{tab.link}}" class="nav-link" [ngClass]="{active:tab.active}">{{tab.name}}</a>
+<ul class="nav nav-tabs">
+	<li role="presentation" *ngFor="let tab of tabs.tabs; let indice=index">
+		<a routerLink="{{tab.link}}" [ngClass]="{attivo:tab.active}">{{tab.name}}</a>
 	</li>
 </ul>
 
