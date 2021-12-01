@@ -1,6 +1,5 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
-import { TabsEnum } from 'src/app/models/Tabs.enum';
 import { TabsService } from 'src/app/services/Tabs.service';
 
 @Component({
@@ -8,15 +7,7 @@ import { TabsService } from 'src/app/services/Tabs.service';
   templateUrl: './servers.component.html',
   styleUrls: ['./servers.component.css']
 })
-export class ServersComponent implements OnInit{
-
-	ngOnInit () {
-		TabsService.attivaFE(TabsEnum.Servers);
-	}
-
+export class ServersComponent {
 	constructor(private tabservice:TabsService){}
-
 	readonly ncol:number= AppComponent.ncol/2;
-	
-
 }

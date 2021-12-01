@@ -1,5 +1,4 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
-import { TabsEnum } from 'src/app/models/Tabs.enum';
+import { Component } from '@angular/core';
 import { TabsService } from 'src/app/services/Tabs.service';
 
 @Component({
@@ -7,13 +6,7 @@ import { TabsService } from 'src/app/services/Tabs.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent  {
 	
-	ngOnInit () {
-		TabsService.attivaFE(TabsEnum.Home);
-	}
-
 	constructor(private tabservice:TabsService){}
-
-
 }
