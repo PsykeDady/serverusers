@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
-import { TabsService } from 'src/app/services/Tabs.service';
 
 @Component({
   selector: 'app-servers',
@@ -8,6 +8,11 @@ import { TabsService } from 'src/app/services/Tabs.service';
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent {
-	constructor(private tabservice:TabsService){}
+	constructor(private router : Router){}
 	readonly ncol:number= AppComponent.ncol/2;
+
+	updateServer () : void {
+
+		this.router.navigate(["/"]);
+	}
 }

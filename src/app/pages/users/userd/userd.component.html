@@ -1,0 +1,15 @@
+<div class="col-xs-{{ncol}} col-sm-{{ncol}} col-md-{{ncol}} col-lg-{{ncol}}">
+	<h5>USER INFO</h5>
+	<hr>
+	<div *ngIf="user&&user.id>0; else nouser">
+		<p>User with ID {{user.id}} is loaded.</p>
+		<p>User name is {{user.username}}</p>
+	</div>
+	<ng-template #nouser>
+		<p> No User selected!</p>
+	</ng-template>
+
+	<button class="btn btn-info" (click)="nextUser()">
+		Next User &rarr;
+	</button>
+</div>
