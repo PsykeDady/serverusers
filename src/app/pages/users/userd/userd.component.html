@@ -3,7 +3,16 @@
 	<hr>
 	<div *ngIf="user&&user.id>0; else nouser">
 		<p>User with ID {{user.id}} is loaded.</p>
-		<p>User name is {{user.username}}</p>
+		<div *ngIf="editMode; else infomode">
+			<label for="name">User name: </label>
+			<input type="name" [(ngModel)]="user.username">
+			<span style="padding: 1%;"></span>
+			<button type="button" class="btn btn-success" (click)="change(user.id)">Change it!</button>
+			
+		</div>
+		<ng-template #infomode>
+			<p>User name is {{user.username}}</p>
+		</ng-template>
 	</div>
 	<ng-template #nouser>
 		<p> No User selected!</p>
@@ -11,5 +20,10 @@
 
 	<button class="btn btn-info" (click)="nextUser()">
 		Next User &rarr;
+	</button>
+	<span style="padding: 5%;"></span>
+	<button class="btn" [ngClass]='{"btn-success":!editMode, "btn-danger":editMode}' (click)="sEditMode()">
+		<span *ngIf="editMode;else infolabel">Abort</span>
+		<ng-template #infolabel>Edit</ng-template>
 	</button>
 </div>

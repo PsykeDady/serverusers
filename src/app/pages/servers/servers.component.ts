@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
+import { ServerService } from 'src/app/services/Servers.service';
 
 @Component({
   selector: 'app-servers',
@@ -8,11 +9,10 @@ import { AppComponent } from 'src/app/app.component';
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent {
-	constructor(private router : Router){}
+	constructor(public serverService:ServerService,private router:Router, activatedRouter : ActivatedRoute){}
 	readonly ncol:number= AppComponent.ncol/2;
 
-	updateServer () : void {
-
-		this.router.navigate(["/"]);
+	goTo(serverName:string){
+		this.router.navigate(["/servers",serverName])
 	}
 }

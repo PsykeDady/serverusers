@@ -2,20 +2,13 @@
 <div class="row">
 	<br>
 	<div class="btn-group-vertical col-xs-{{ncol}} col-sm-{{ncol}} col-md-{{ncol}} col-lg-{{ncol}}">
-		<button type="button" class="btn btn-default">Production</button>
-		<button type="button" class="btn btn-default">TestServer</button>
-		<button type="button" class="btn btn-default">DevServer</button>
+		<button type="button" class="btn btn-default"
+		*ngFor="let server of serverService.servers"
+		(click)="goTo(server.name)">{{server.name}}</button>
 	</div>
 	
-	<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-		<strong>Server Name</strong><br>
-		<input type="text" name="servername" id="servername"><br><br>
-		<strong>Server Status</strong><br>
-		<input type="text" name="serverstatus" id="serverstatus"><br><br>
-		
-		<button type="button" class="btn btn-info" (click)="updateServer()">Update Server</button>
-		<hr>
-		<h5>_NOME SERVER_</h5>
-		<p>Server status is <span>online</span></p>
-	</div>
+	<app-serverd
+	[ncol]="ncol">
+
+	</app-serverd>
 </div>

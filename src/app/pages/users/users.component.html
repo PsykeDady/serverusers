@@ -1,14 +1,15 @@
 <div class="row">
 	<br>
 	<div class="btn-group-vertical col-xs-{{ncol}} col-sm-{{ncol}} col-md-{{ncol}} col-lg-{{ncol}}">
-		<button type="button" class="btn btn-default"
+		<button type="button" class="btn btn-default" (click)="userSel(user)"
 			*ngFor="let user of userService.users"
 		>{{user.username}}</button>
 	</div>
 	
 	<app-userd
-		[ncol]="ncol">
-
+		[ncol]="ncol"
+		[user]="user_sel">
+		
 	</app-userd>
 	
 	

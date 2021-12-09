@@ -1,11 +1,15 @@
 import { User } from "../models/User";
 
 export class UserService{
-	users:User[]=[
+	_users:User[]=[
 		new User("Max"),
 		new User("Anna"),
 		new User("Chris")
 	]
+
+	get users(){
+		return this._users.map(v=> new User(v.username,v.id));
+	}
 
 
 	nextUser(user:User ):number{
@@ -15,5 +19,13 @@ export class UserService{
 			}
 		}
 		return 1;
+	}
+
+	changeName(uid:number, newName:string) :void{
+		for( let user of this._users ){
+			if(uid == user.id){
+				user.username=newName;
+			}
+		}
 	}
 }
