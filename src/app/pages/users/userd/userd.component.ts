@@ -14,10 +14,11 @@ export class UserdComponent implements OnInit {
 	@Input() ncol:number;
 	@Input() user:User;
 	editMode:boolean;
-	constructor( private userService:UserService, activatedRouter: ActivatedRoute, private router:Router){
+	constructor( private userService:UserService, private activatedRouter: ActivatedRoute, private router:Router){
 		activatedRouter.queryParams.subscribe(params=>{
 			console.log(params)
-			this.editMode=params["edit"]
+			let paramEdit=params["edit"]; 
+			this.editMode=paramEdit==='' || paramEdit===1 || paramEdit==='true' || paramEdit===true ;
 			console.log(this.editMode)
 		})
 		activatedRouter.params.subscribe(
@@ -51,8 +52,10 @@ export class UserdComponent implements OnInit {
 	
 	sEditMode(){
 		console.log("this.editMode",this.editMode)
-		this.router.navigate(["/users",this.user.id],{
-			queryParams:{edit:!this.editMode}
+		this.router.navigate([],{
+			relativeTo:this.activatedRouter,
+			queryParamsHandling:'merge',
+			queryParams:{edit:!this.editMode},
 		})
 	}
 
