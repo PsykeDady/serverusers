@@ -16,7 +16,7 @@ export class ServersComponent {
 		this.router.navigate(["/servers",serverName])
 	}
 
-	sizeNCol(componente){
+	sizeNCol(componente:any){
 		componente.ncol=this.ncol
 	}
 }

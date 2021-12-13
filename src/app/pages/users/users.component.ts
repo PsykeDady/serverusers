@@ -18,7 +18,7 @@ export class UsersComponent  {
 	userSel(user:User) {
 		this.router.navigate([user.id],{relativeTo:this.activatedRoute});
 	}
-	sizeNCol(componente){
+	sizeNCol(componente:any){
 		componente.ncol=this.ncol
 	}
 }

@@ -45,7 +45,6 @@ export class ServerdComponent implements OnInit {
 			this.serverService.flagOnline(this.serverName)
 			this.server.online=!this.server.online
 		}
-		//this.router.navigate(["/servers"]);
 	}
 
 }
