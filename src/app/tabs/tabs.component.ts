@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Tab } from '../models/Tab';
+import { TabsEnum } from '../models/Tabs.enum';
 import { TabsService } from '../services/Tabs.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { TabsService } from '../services/Tabs.service';
 export class TabsComponent {
 
 	tabs = TabsService;
+	tabm= TabsEnum;
 	constructor(private tabservice: TabsService){}
 
 }
