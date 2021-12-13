@@ -15,10 +15,12 @@ import { FormsModule } from '@angular/forms';
 
 const appRoutes : Routes = [
 	{path:""          ,component:HomeComponent    },
-	{path:"users"     ,component:UsersComponent   },
-	{path:"users/:id" ,component:UserdComponent   },
-	{path:"servers"   ,component:ServersComponent },
-	{path:"servers/:name"   ,component:ServerdComponent },
+	{path:"users"     ,component:UsersComponent, children: [
+		{path:":id" ,component:UserdComponent   },
+	]   }, 
+	{path:"servers"   ,component:ServersComponent , children:[
+		{path:":name"   ,component:ServerdComponent },
+	]},
 ]
 
 @NgModule({

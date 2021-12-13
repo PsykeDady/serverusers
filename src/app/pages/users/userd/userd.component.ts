@@ -61,6 +61,5 @@ export class UserdComponent implements OnInit {
 
 	change(uid: number) {
 		this.userService.changeName(this.user.id,this.user.username)
-		this.router.navigate(["/users"])
 	}
 }

@@ -15,4 +15,8 @@ export class ServersComponent {
 	goTo(serverName:string){
 		this.router.navigate(["/servers",serverName])
 	}
+
+	sizeNCol(componente){
+		componente.ncol=this.ncol
+	}
 }

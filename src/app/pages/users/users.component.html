@@ -6,11 +6,9 @@
 		>{{user.username}}</button>
 	</div>
 	
-	<app-userd
-		[ncol]="ncol"
-		[user]="user_sel">
-		
-	</app-userd>
+	<router-outlet (activate)="sizeNCol($event)">
+
+	</router-outlet>
 	
 	
 </div>	

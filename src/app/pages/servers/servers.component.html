@@ -7,8 +7,7 @@
 		(click)="goTo(server.name)">{{server.name}}</button>
 	</div>
 	
-	<app-serverd
-	[ncol]="ncol">
-
-	</app-serverd>
+	<router-outlet (activate)="sizeNCol($event)">
+		
+	</router-outlet>
 </div>
