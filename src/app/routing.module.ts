@@ -16,7 +16,7 @@ const appRoutes : Routes = [
 	] }             ,
 	{path:"servers" ,component:ServersComponent , children:[
 		{path:":name"   ,component:ServerdComponent }
-	], canActivate: [ServerRoutingActivation] }              ,
+	], canActivateChild: [ServerRoutingActivation] }              ,
 	{path:"eniente" , component: NotFoundPage},
 	{path:"banana" , component: NotAuthorizated},
 	{path:"**"      , redirectTo: "/eniente"}
