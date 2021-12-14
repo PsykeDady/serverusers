@@ -14,6 +14,7 @@ import { ServerRoutingActivation } from './services/Server.routing.activation.se
 import { ServerService    } from './services/Servers.service'               ;
 import { TabsService      } from './services/Tabs.service'                  ;
 import { UserService      } from './services/User.service'                  ;
+import { UserActivationService } from './services/Usersrouting.activation.service';
 import { TabsComponent    } from './tabs/tabs.component'                    ;
 
 
@@ -35,7 +36,13 @@ import { TabsComponent    } from './tabs/tabs.component'                    ;
 	FormsModule,
 	RoutingModule
   ],
-  providers: [TabsService, UserService,ServerService,ServerRoutingActivation],
+  providers: [
+	TabsService, 
+	UserService,
+	ServerService,
+	ServerRoutingActivation,
+	UserActivationService
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

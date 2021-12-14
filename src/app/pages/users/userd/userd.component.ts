@@ -24,14 +24,10 @@ export class UserdComponent implements OnInit {
 		activatedRouter.params.subscribe(
 			(param) => {
 				let id: number= param["id"];
-				if(id===undefined){
-					this.user=User.NOUSER;
-				} else {
-					for ( let u of userService.users){
-						if(u.id==id){
-							this.user=u;
-							break;
-						}
+				for ( let u of userService.users){
+					if(u.id==id){
+						this.user=u;
+						break;
 					}
 				}
 			}

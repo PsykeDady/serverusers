@@ -8,12 +8,13 @@ import { ServersComponent         } from "./pages/servers/servers.component"    
 import { UserdComponent           } from "./pages/users/userd/userd.component"      ;
 import { UsersComponent           } from "./pages/users/users.component"            ;
 import { ServerRoutingActivation } from "./services/Server.routing.activation.service";
+import { UserActivationService } from "./services/Usersrouting.activation.service";
 
 const appRoutes : Routes = [
 	{path:""        ,component:HomeComponent },
 	{path:"users"   ,component:UsersComponent, children: [
 		{path:":id"     ,component:UserdComponent}
-	] }             ,
+	], canActivateChild: [UserActivationService]  }             ,
 	{path:"servers" ,component:ServersComponent , children:[
 		{path:":name"   ,component:ServerdComponent }
 	], canActivateChild: [ServerRoutingActivation] }              ,
