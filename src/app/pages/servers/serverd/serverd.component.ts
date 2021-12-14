@@ -19,21 +19,16 @@ export class ServerdComponent implements OnInit {
 	constructor(private router : Router, activatedRouter: ActivatedRoute, private serverService:ServerService) {
 		activatedRouter.params.subscribe(
 			params=> {
-				this.server=undefined;
 				let name=params["name"]
 				if( name===undefined || name===""){
 					this.server=ServerModel.NO_SERVER
 					this.edit=false;
 				} else {
 					for ( let s of serverService.servers){
-						if(s.name.toLocaleLowerCase()===name.toLocaleLowerCase()){
+						if(s.name===name){
 							this.server=s;
 							break;
 						}
-					}
-					if(this.server===undefined){
-						router.navigate(["/eniente"])
-						return;
 					}
 					this.serverName=this.server.name;
 				}

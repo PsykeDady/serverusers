@@ -4,20 +4,21 @@ import { TabsEnum } from "src/app/models/Tabs.enum";
 import { TabsService } from "src/app/services/Tabs.service";
 
 @Component({
-	'selector':"not-found",
+	'selector':"not-auth",
     'template':`
-    	<h3>We we wajju, n'aggie trovat chiddu cchi va cercand</h3>
-		<q><i>404: page not found</i></q>
+    	<h3>'ndo cazz vai</h3>
+		<p>Se la banana non ce l'hai</p>
+		<q><i>401: not authorizated</i></q>
 		<img 
-			src="https://c.tenor.com/QFclERYLUH4AAAAC/italian-hand-italy.gif"
+			src="https://i.pinimg.com/originals/f3/0e/21/f30e21da146bd3501555eec943a8898e.gif"
 			class="img-responsive img-rounded"
 		/>
     `
 })
-export class NotFoundPage implements OnInit, OnDestroy{
+export class NotAuthorizated implements OnInit, OnDestroy{
 	
 	ngOnInit(){
-		TabsService.tabs.push(new Tab(TabsEnum["OOPS! D:"],"eniente"))
+		TabsService.tabs.push(new Tab(TabsEnum["OOPS! D:"],"banana"))
 	}
 
 	ngOnDestroy(){
