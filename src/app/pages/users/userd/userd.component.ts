@@ -51,7 +51,6 @@ export class UserdComponent implements OnInit {
 	}
 	
 	sEditMode(){
-		console.log("this.editMode",this.editMode)
 		this.router.navigate([],{
 			relativeTo:this.activatedRouter,
 			queryParamsHandling:'merge',
@@ -61,5 +60,11 @@ export class UserdComponent implements OnInit {
 
 	change(uid: number) {
 		this.userService.changeName(this.user.id,this.user.username)
+		this.sEditMode();
+	}
+
+	widthView(div:number):string {
+		let ncol=Math.floor(this.ncol/div);
+		return `col-xs-${ncol} col-sm-${ncol} col-md-${ncol} col-lg-${ncol}`
 	}
 }

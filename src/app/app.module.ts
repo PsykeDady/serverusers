@@ -17,13 +17,13 @@ import { NotFoundPage              } from './pages/notfound/app.notfound'       
 const appRoutes : Routes = [
 	{path:""          ,component:HomeComponent    },
 	{path:"users"     ,component:UsersComponent, children: [
-		{path:":id" ,component:UserdComponent   },
+		{path:":id" ,component:UserdComponent   }
 	]   }, 
 	{path:"servers"   ,component:ServersComponent , children:[
-		{path:":name"   ,component:ServerdComponent },
+		{path:":name"   ,component:ServerdComponent }
 	]},
 	{path:"eniente", component: NotFoundPage},
-	{path:"**", redirectTo: "eniente"}
+	{path:"**", redirectTo: "/eniente"}
 ]
 
 @NgModule({
