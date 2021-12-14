@@ -1,5 +1,6 @@
 export enum TabsEnum {
 	Home,
 	Servers,
-	Users
+	Users,
+	"OOPS! D:"
 }

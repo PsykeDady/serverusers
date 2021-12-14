@@ -13,4 +13,5 @@ export class TabsComponent {
 	tabm= TabsEnum;
 	constructor(private tabservice: TabsService){}
 
+
 }
