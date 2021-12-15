@@ -14,6 +14,7 @@ export class UserdComponent implements OnInit {
 	@Input() ncol:number;
 	@Input() user:User;
 	editMode:boolean;
+	newName: string; 
 	constructor( private userService:UserService, private activatedRouter: ActivatedRoute, private router:Router){
 		activatedRouter.queryParams.subscribe(params=>{
 			console.log(params)
@@ -46,17 +47,29 @@ export class UserdComponent implements OnInit {
 		this.router.navigate(["/users",this.userService.nextUser(this.user)]);
 	}
 	
-	sEditMode(){
-		this.router.navigate([],{
-			relativeTo:this.activatedRouter,
-			queryParamsHandling:'merge',
-			queryParams:{edit:!this.editMode},
-		})
+	sEditMode(edited?:boolean){
+		if(edited){
+			this.editMode=false;
+			this.router.navigate([],{
+				relativeTo:this.activatedRouter,
+				queryParamsHandling:'merge',
+				queryParams:{edit:this.editMode},
+			})
+		} else {
+			this.router.navigate(["/users",this.user.id],{
+				queryParamsHandling:'merge',
+				queryParams:{edit:!this.editMode},
+			})
+		}
 	}
 
 	change(uid: number) {
-		this.userService.changeName(this.user.id,this.user.username)
-		this.sEditMode();
+		this.userService.changeName(this.user.id,this.newName)
+		this.sEditMode(true);
+	}
+
+	edited() : boolean {
+		return this.editMode && this.newName!==this.user.username;
 	}
 
 	widthView(div:number):string {

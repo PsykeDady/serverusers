@@ -13,8 +13,8 @@ import { UserActivationService } from "./services/Usersrouting.activation.servic
 const appRoutes : Routes = [
 	{path:""        ,component:HomeComponent },
 	{path:"users"   ,component:UsersComponent, children: [
-		{path:":id"     ,component:UserdComponent}
-	], canActivateChild: [UserActivationService]  }             ,
+		{path:":id"     ,component:UserdComponent, canDeactivate:[UserActivationService]}
+	], canActivateChild: [UserActivationService] }             ,
 	{path:"servers" ,component:ServersComponent , children:[
 		{path:":name"   ,component:ServerdComponent }
 	], canActivateChild: [ServerRoutingActivation] }              ,
