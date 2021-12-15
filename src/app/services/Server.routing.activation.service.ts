@@ -9,8 +9,6 @@ export class ServerRoutingActivation implements CanActivateChild{
 	constructor(private router:Router, private serverService:ServerService){}
 
 	canActivateChild(activatedRouteSnapshot:ActivatedRouteSnapshot,routerStateSnapshot: RouterStateSnapshot):boolean | UrlTree | Observable <boolean | UrlTree> | Promise<boolean | UrlTree> {
-		console.log(activatedRouteSnapshot)
-		console.log(routerStateSnapshot)
 		let name = activatedRouteSnapshot.params["name"]
 
 		for ( let s of this.serverService.servers){

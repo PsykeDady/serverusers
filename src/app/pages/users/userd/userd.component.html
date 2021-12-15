@@ -6,7 +6,7 @@
 	<div class="row">
 		<div *ngIf="editMode; else infomode">
 			<label for="name">User name: </label>
-			<input type="name" [(ngModel)]="newName">			
+			<input type="name" [(ngModel)]="newName" (input)="setEdited($event)">			
 		</div>
 		<ng-template #infomode>
 			<p>User name is {{user.username}}</p>
@@ -15,7 +15,7 @@
 	<div style="margin: 5%;"></div>
 	<div class="row">
 		<div *ngIf="editMode; else infomode2">
-			<button type="button" class="btn btn-success" (click)="change(user.id)">
+			<button type="button" class="btn btn-success" (click)="change()">
 				Change it!
 			</button>
 			<span style="padding: 1%;"></span>
