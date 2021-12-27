@@ -10,8 +10,6 @@ export class UserActivationService implements CanActivateChild, CanDeactivate<Us
 	constructor(private router:Router, private userservice:UserService){}
 
 	canActivateChild(activatedRouteSnapshot:ActivatedRouteSnapshot,routerStateSnapshot: RouterStateSnapshot):boolean | UrlTree | Observable <boolean | UrlTree> | Promise<boolean | UrlTree> {
-		console.log(activatedRouteSnapshot)
-		console.log(routerStateSnapshot)
 		let id = activatedRouteSnapshot.params["id"]
 
 		for ( let u of this.userservice.users){
@@ -30,11 +28,8 @@ export class UserActivationService implements CanActivateChild, CanDeactivate<Us
 		nextState: RouterStateSnapshot
 	): Observable<boolean|UrlTree>|Promise<boolean|UrlTree>|boolean|UrlTree {
 		
-		if(component.editMode){
-			return confirm("Non hai salvato D: \nSe chiudi perderai i tuoi dati!!");
-		}
 
-		return true;
+		return component.confirmExit();
 	}
 		  
 }

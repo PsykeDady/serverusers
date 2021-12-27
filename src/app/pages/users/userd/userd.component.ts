@@ -13,15 +13,11 @@ export class UserdComponent implements OnInit {
 
 	@Input() ncol:number;
 	@Input() user:User;
+	edited:boolean;
 	editMode:boolean;
 	newName: string; 
 	constructor( private userService:UserService, private activatedRouter: ActivatedRoute, private router:Router){
-		activatedRouter.queryParams.subscribe(params=>{
-			console.log(params)
-			let paramEdit=params["edit"]; 
-			this.editMode=paramEdit==='' || paramEdit===1 || paramEdit==='true' || paramEdit===true ;
-			console.log(this.editMode)
-		})
+	
 		activatedRouter.params.subscribe(
 			(param) => {
 				let id: number= param["id"];
@@ -35,6 +31,11 @@ export class UserdComponent implements OnInit {
 				this.newName=this.user.username
 			}
 			)
+			activatedRouter.queryParams.subscribe(params=>{
+				let paramEdit=params["edit"]; 
+				this.newName=this.user.username
+				this.editMode=paramEdit==='' || paramEdit===1 || paramEdit==='true' || paramEdit===true ;
+			})
 			if (this.ncol===undefined){
 				this.ncol=AppComponent.ncol;
 			}
@@ -49,31 +50,45 @@ export class UserdComponent implements OnInit {
 		this.router.navigate(["/users",this.userService.nextUser(this.user)]);
 	}
 	
-	sEditMode(edited?:boolean){
-		if(edited){
-			this.editMode=false;
-			this.router.navigate([],{
-				relativeTo:this.activatedRouter,
-				queryParamsHandling:'merge',
-				queryParams:{edit:this.editMode},
-			})
-		} else {
-			this.router.navigate(["/users",this.user.id],{
-				queryParamsHandling:'merge',
-				queryParams:{edit:!this.editMode},
-			})
+	sEditMode():void{
+		if(!this.editMode){
+			this.newName=this.user.username
+		}else {
+			if(! this.confirmExit()) return;
 		}
+		this.router.navigate(["/users",this.user.id],{
+			queryParamsHandling:'merge',
+			queryParams:{edit:!this.editMode},
+		})
+	}
+
+	confirmExit():boolean{
+		if(this.edited){
+			return confirm("Non hai salvato D: \nSe chiudi perderai i tuoi dati!!");
+		}
+		return true;
 	}
 
 	change() {
 		this.userService.changeName(this.user.id,this.newName)
-		this.user.username=this.newName;
-		this.sEditMode(true);
+		this.edited=false
+		this.user.username= this.newName
+		this.sEditMode();
 	}
 
-	edited() : boolean {
-		return this.editMode && this.newName!==this.user.username;
+	setEdited(event: Event) :void {
+		let ievent:InputEvent=event as InputEvent
+		//console.log("event",event)
+		//console.log("ievent.data",ievent.data)
+		let etarget:EventTarget=ievent.target;
+		let hielement:HTMLInputElement= etarget as HTMLInputElement;
+		//console.log("hielement.value",hielement.value)
+
+		//console.log("setEdited")
+		this.edited=hielement.value!==this.user.username
+		//console.log("edited?",this.edited)
 	}
+
 
 	widthView(div:number):string {
 		let ncol=Math.floor(this.ncol/div);
