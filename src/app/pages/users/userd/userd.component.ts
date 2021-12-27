@@ -31,6 +31,8 @@ export class UserdComponent implements OnInit {
 						break;
 					}
 				}
+				console.log(this.user);
+				this.newName=this.user.username
 			}
 			)
 			if (this.ncol===undefined){
@@ -63,8 +65,9 @@ export class UserdComponent implements OnInit {
 		}
 	}
 
-	change(uid: number) {
+	change() {
 		this.userService.changeName(this.user.id,this.newName)
+		this.user.username=this.newName;
 		this.sEditMode(true);
 	}
 

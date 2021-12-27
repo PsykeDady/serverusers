@@ -46,5 +46,4 @@ export class ServerdComponent implements OnInit {
 			this.server.online=!this.server.online
 		}
 	}
-
 }
