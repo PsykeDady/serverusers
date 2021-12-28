@@ -9,13 +9,13 @@ import { TabsService } from "src/app/services/Tabs.service";
     	<h3>We we wajju, n'aggie trovat chiddu cchi va cercand</h3>
 		<q><i>404: page not found</i></q>
 		<img 
-			src="https://c.tenor.com/QFclERYLUH4AAAAC/italian-hand-italy.gif"
+			src="./assets/img/italian-hand-italy.gif"
 			class="img-responsive img-rounded"
 		/>
     `
 })
 export class NotFoundPage implements OnInit, OnDestroy{
-	
+
 	ngOnInit(){
 		TabsService.tabs.push(new Tab(TabsEnum["OOPS! D:"],"eniente"))
 	}
