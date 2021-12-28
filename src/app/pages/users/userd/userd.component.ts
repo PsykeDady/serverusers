@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { User } from 'src/app/models/User';
+import { UsersResolver } from 'src/app/resolvers/Users.resolver';
 import { UserService } from 'src/app/services/User.service';
 
 @Component({
@@ -17,29 +18,22 @@ export class UserdComponent implements OnInit {
 	editMode:boolean;
 	newName: string; 
 	constructor( private userService:UserService, private activatedRouter: ActivatedRoute, private router:Router){
-	
-		activatedRouter.params.subscribe(
-			(param) => {
-				let id: number= param["id"];
-				for ( let u of userService.users){
-					if(u.id==id){
-						this.user=u;
-						break;
-					}
-				}
-				console.log(this.user);
-				this.newName=this.user.username
-			}
-			)
-			activatedRouter.queryParams.subscribe(params=>{
-				let paramEdit=params["edit"]; 
-				this.newName=this.user.username
-				this.editMode=paramEdit==='' || paramEdit===1 || paramEdit==='true' || paramEdit===true ;
-			})
-			if (this.ncol===undefined){
-				this.ncol=AppComponent.ncol;
-			}
+		
+		activatedRouter.data.subscribe(d=>{
+			this.user=d["user"];
+		})
+		
+		this.newName=this.user.username
+
+		activatedRouter.queryParams.subscribe(params=>{
+			let paramEdit=params["edit"]; 
+			this.newName=this.user.username
+			this.editMode=paramEdit==='' || paramEdit===1 || paramEdit==='true' || paramEdit===true ;
+		})
+		if (this.ncol===undefined){
+			this.ncol=AppComponent.ncol;
 		}
+	}
 
 		ngOnInit(){
 			this.user=this.user==null?User.NOUSER:this.user;

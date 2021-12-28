@@ -9,6 +9,7 @@ import { ServerdComponent } from './pages/servers/serverd/serverd.component';
 import { ServersComponent } from './pages/servers/servers.component'        ;
 import { UserdComponent   } from './pages/users/userd/userd.component'      ;
 import { UsersComponent   } from './pages/users/users.component'            ;
+import { UsersResolver } from './resolvers/Users.resolver';
 import { RoutingModule    } from './routing.module'                         ;
 import { ServerRoutingActivation } from './services/Server.routing.activation.service';
 import { ServerService    } from './services/Servers.service'               ;
@@ -41,7 +42,8 @@ import { TabsComponent    } from './tabs/tabs.component'                    ;
 	UserService,
 	ServerService,
 	ServerRoutingActivation,
-	UserActivationService
+	UserActivationService,
+	UsersResolver, 
 ],
   bootstrap: [AppComponent]
 })
