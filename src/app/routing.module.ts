@@ -7,6 +7,7 @@ import { ServerdComponent         } from "./pages/servers/serverd/serverd.compon
 import { ServersComponent         } from "./pages/servers/servers.component"        ;
 import { UserdComponent           } from "./pages/users/userd/userd.component"      ;
 import { UsersComponent           } from "./pages/users/users.component"            ;
+import { ServerResolver } from "./resolvers/Servers.resolver";
 import { UsersResolver } from "./resolvers/Users.resolver";
 import { ServerRoutingActivation } from "./services/Server.routing.activation.service";
 import { UserActivationService } from "./services/Usersrouting.activation.service";
@@ -17,7 +18,7 @@ const appRoutes : Routes = [
 		{path:":id"     ,component:UserdComponent, canDeactivate:[UserActivationService], resolve:{user:UsersResolver}}
 	], canActivateChild: [UserActivationService] }             ,
 	{path:"servers" ,component:ServersComponent , children:[
-		{path:":name"   ,component:ServerdComponent }
+		{path:":name"   ,component:ServerdComponent, resolve:{server:ServerResolver} }
 	], canActivateChild: [ServerRoutingActivation] }      ,
 	{path:"eniente" , component : NotFoundPage   },
 	{path:"banana"  , component : NotAuthorizated},

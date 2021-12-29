@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { User } from 'src/app/models/User';
-import { UsersResolver } from 'src/app/resolvers/Users.resolver';
 import { UserService } from 'src/app/services/User.service';
 
 @Component({
@@ -21,9 +20,9 @@ export class UserdComponent implements OnInit {
 		
 		activatedRouter.data.subscribe(d=>{
 			this.user=d["user"];
+			this.newName=this.user.username
 		})
 		
-		this.newName=this.user.username
 
 		activatedRouter.queryParams.subscribe(params=>{
 			let paramEdit=params["edit"]; 
@@ -72,15 +71,10 @@ export class UserdComponent implements OnInit {
 
 	setEdited(event: Event) :void {
 		let ievent:InputEvent=event as InputEvent
-		//console.log("event",event)
-		//console.log("ievent.data",ievent.data)
 		let etarget:EventTarget=ievent.target;
 		let hielement:HTMLInputElement= etarget as HTMLInputElement;
-		//console.log("hielement.value",hielement.value)
 
-		//console.log("setEdited")
 		this.edited=hielement.value!==this.user.username
-		//console.log("edited?",this.edited)
 	}
 
 

@@ -17,23 +17,12 @@ export class ServerdComponent implements OnInit {
 	serverName:string=""
 
 	constructor(private router : Router, activatedRouter: ActivatedRoute, private serverService:ServerService) {
-		activatedRouter.params.subscribe(
-			params=> {
-				let name=params["name"]
-				if( name===undefined || name===""){
-					this.server=ServerModel.NO_SERVER
-					this.edit=false;
-				} else {
-					for ( let s of serverService.servers){
-						if(s.name===name){
-							this.server=s;
-							break;
-						}
-					}
-					this.serverName=this.server.name;
-				}
-			}
-		);
+		activatedRouter.data.subscribe( data => {
+			this.server=data["server"]
+			this.serverName=this.server.name;
+			if ( this.server===ServerModel.NO_SERVER)
+			 	this.edit=false;
+		});
 	}
 
 	ngOnInit(): void {
