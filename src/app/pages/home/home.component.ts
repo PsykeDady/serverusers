@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { interval, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { getContatore } from 'src/app/Observable/Contatore';
 import { TabsService } from 'src/app/services/Tabs.service';
 
 @Component({
@@ -17,13 +18,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 	constructor(private tabservice:TabsService){}
 
 	ngOnInit(): void {
-		this.contatore=interval(1000).subscribe(tick=>{
-			let tick1=tick+1;
-			this.secondi=tick1%60;
-			this.minuti=(Math.floor(tick1/60)%60);
-			this.ore=Math.floor(tick1/3600);
-			console.log(tick)
-		})
+		this.contatore = getContatore().subscribe(secondi => {
+			this.secondi=secondi%60;
+			this.minuti=(Math.floor(secondi/60)%60);
+			this.ore=Math.floor(secondi/3600);
+			console.log(secondi)
+		});
 	}
 
 	ngOnDestroy(): void {
