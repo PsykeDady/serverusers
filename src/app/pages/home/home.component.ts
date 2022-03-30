@@ -13,17 +13,21 @@ export class HomeComponent implements OnInit, OnDestroy {
 	secondi: number=0; 
 	minuti: number=0;
 	ore: number=0;
+	completion:boolean=false;
 	contatore:Subscription;
 	
 	constructor(private tabservice:TabsService){}
 
 	ngOnInit(): void {
-		this.contatore = getContatore().subscribe(secondi => {
-			this.secondi=secondi%60;
-			this.minuti=(Math.floor(secondi/60)%60);
-			this.ore=Math.floor(secondi/3600);
-			console.log(secondi)
-		});
+		this.contatore = getContatore(0,0,0).subscribe(({secondi,minuti,ore}) => {
+			this.secondi=secondi;
+			this.minuti=minuti;
+			this.ore=ore;
+		},
+			error => {console.log("error",error)}, 
+			/*complete*/()=> {
+				this.completion=true;
+		} );
 	}
 
 	ngOnDestroy(): void {
