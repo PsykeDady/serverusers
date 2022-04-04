@@ -33,6 +33,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 		} );
 	}
 
+	showClock():boolean{
+		return this.ore!='' && this.minuti!='' && this.secondi!='';
+	}
+
 	ngOnDestroy(): void {
 		this.contatore.unsubscribe();
 	}

@@ -1,9 +1,5 @@
 import { Observable } from "rxjs";
 
-
-
-
-
 export function getContatore(maxSecondi?:number, maxMinuti?:number, maxOre?:number): Observable<{secondi:number,minuti:number,ore:number}> {
 	return new Observable( observer => {
 		let secondi:number=0;
@@ -37,7 +33,7 @@ export function getContatore(maxSecondi?:number, maxMinuti?:number, maxOre?:numb
 				observer.error("max ore");
 				clearInterval(timeout)
 			} 
-		}, 10)
+		}, 1000)
 	})
 	
 } 

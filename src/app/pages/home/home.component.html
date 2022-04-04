@@ -3,8 +3,10 @@
 <p>Manage your Server and Users.</p>
 
 <small class="text-muted">
-	Tempo passato: {{ore}}:{{minuti}}:{{secondi}}
-	<strong *ngIf="completion">
+	Tempo passato: <span *ngIf="showClock()">
+		{{ore}}:{{minuti}}:{{secondi}}
+	</span>
+	<strong style="color: green;"  *ngIf="completion">
 		Done!
 	</strong>
 </small>
