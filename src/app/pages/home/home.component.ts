@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import {map} from 'rxjs/operators';
 import { getContatore } from 'src/app/Observable/Contatore';
 import { TabsService } from 'src/app/services/Tabs.service';
 
@@ -10,16 +11,18 @@ import { TabsService } from 'src/app/services/Tabs.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-	secondi: number=0; 
-	minuti: number=0;
-	ore: number=0;
+	secondi: string=""; 
+	minuti: string="";
+	ore: string="";
 	completion:boolean=false;
 	contatore:Subscription;
 	
 	constructor(private tabservice:TabsService){}
 
 	ngOnInit(): void {
-		this.contatore = getContatore(0,0,0).subscribe(({secondi,minuti,ore}) => {
+		this.contatore = getContatore(12,2,1).pipe(map(v=>{
+			return {secondi:this.format(v.secondi,2),minuti:this.format(v.minuti,2),ore:this.format(v.ore,2)}
+		})).subscribe(({secondi,minuti,ore}) => {
 			this.secondi=secondi;
 			this.minuti=minuti;
 			this.ore=ore;

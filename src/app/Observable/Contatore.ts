@@ -31,12 +31,13 @@ export function getContatore(maxSecondi?:number, maxMinuti?:number, maxOre?:numb
 					}
 				}
 			}
-			if (ore >= 24){
+			if (ore >= 24 ){
 				console.log("fermato per condizione ore>24:",ore>=24)
 			
 				observer.error("max ore");
 				clearInterval(timeout)
 			} 
-		}, 1)
+		}, 10)
 	})
+	
 } 
