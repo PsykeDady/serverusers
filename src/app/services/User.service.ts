@@ -7,6 +7,10 @@ export class UserService{
 		new User("Chris")
 	]
 
+	addUsers(name:string){
+		this._users.push(new User(name));
+	}
+
 	get users(){
 		return this._users.map(v=> new User(v.username,v.id));
 	}
