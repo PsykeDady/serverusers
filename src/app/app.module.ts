@@ -5,6 +5,7 @@ import { AppComponent     } from './app.component'                          ;
 import { HomeComponent    } from './pages/home/home.component'              ;
 import { NotAuthorizated  } from './pages/notauthorizated/app.notauthorizated';
 import { NotFoundPage     } from './pages/notfound/app.notfound'            ;
+import { RegisterComponent } from './pages/register/register.component';
 import { ServerdComponent } from './pages/servers/serverd/serverd.component';
 import { ServersComponent } from './pages/servers/servers.component'        ;
 import { UserdComponent   } from './pages/users/userd/userd.component'      ;
@@ -31,7 +32,8 @@ import { TabsComponent    } from './tabs/tabs.component'                    ;
     UserdComponent,
     ServerdComponent,
 	NotFoundPage,
-	NotAuthorizated
+	NotAuthorizated,
+  RegisterComponent
   ],
   imports: [
     BrowserModule,
