@@ -1,28 +1,24 @@
-<div class="container">
-	<div class="row">
-		<ul class="nav nav-tabs">
-			<li role="presentation" *ngFor="let tab of tabs.tabs; let indice=index">
-				<a 
-					routerLink="{{tab.link}}" 
-					routerLinkActive="attivo" 
-					[routerLinkActiveOptions]="{ exact: tab.name===tabm[tabm.Home] }" 
-					[ngStyle]='{
-						"color":tab.name!==tabm[tabm["OOPS! D:"]]?"black":"red"
-					}'>
-					{{ tab.name }}
-				</a>
-			</li>
-			<ul class="nav nav-tabs navbar-right">
-				<li role="presenta">
-					<a 
-						routerLink="register"
-						routerLinkActive="bg-info text-muted"
-						class="text-primary"
-					>		
-						Register
-					</a>
-				</li>
-			</ul>
-		</ul>
-	</div>
-</div>
+<ul class="nav nav-tabs col-12">
+	<li role="presentation" *ngFor="let tab of tabs.tabs; let indice=index">
+		<a 
+			routerLink="{{tab.link}}" 
+			routerLinkActive="attivo" 
+			[routerLinkActiveOptions]="{ exact: tab.name===tabm[tabm.Home] }" 
+			[ngStyle]='{
+				"color":tab.name!==tabm[tabm["OOPS! D:"]]?"black":"red"
+			}'>
+			{{ tab.name }}
+		</a>
+	</li>
+	<ul class="nav nav-tabs navbar-right">
+		<li role="presenta">
+			<a 
+				routerLink="register"
+				routerLinkActive="bg-info text-muted"
+				class="text-primary"
+			>		
+				Register
+			</a>
+		</li>
+	</ul>
+</ul>
