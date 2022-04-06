@@ -1,10 +1,10 @@
-<form action="" method="POST" role="form" #formRegistrazione="ngForm"  (ngSubmit)="registrati(formRegistrazione)">
+<form action="" method="POST" role="form" #formRegistrazione="ngForm"  (ngSubmit)="registrati()">
 	<legend>Registration</legend>
 
 	<div class="form-group">
 		<label for="">Nome utente</label>
-		<input type="text" class="form-control" id="" placeholder="Input field" ngModel name="nome">
+		<input type="text" class="form-control" id="" placeholder="Inserisci Nome" ngModel name="nome" required>
 	</div>
-
-	<button type="submit" class="btn btn-primary" >Submit</button>
+	
+	<button type="submit" class="btn btn-primary" [disabled]="formRegistrazione.invalid">Submit</button>
 </form>

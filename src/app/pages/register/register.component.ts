@@ -1,7 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
-import { TabsService } from "src/app/services/Tabs.service";
 import { UserService } from "src/app/services/User.service";
 
 @Component({
@@ -11,17 +10,22 @@ import { UserService } from "src/app/services/User.service";
 })
 export class RegisterComponent {
 
-	constructor(public router:Router, public userService: UserService){
+	@ViewChild("formRegistrazione") formRegistrazione:NgForm;
 
+	constructor(public router:Router, public userService: UserService){
 	}
 
+	stampe(){
+		console.log("NgForm=",this.formRegistrazione);
+		console.log("NgForm.valid=",this.formRegistrazione.valid);
+		console.log("NgForm.value=",this.formRegistrazione.value);
+		console.log("NgForm.value[\"nome\"]=",this.formRegistrazione.value["nome"]);
+	}
 
-	registrati(formRegistrazione:NgForm){
-		console.log("NgForm=",formRegistrazione);
-		console.log("NgForm.value=",formRegistrazione.value);
-		console.log("NgForm.value[\"nome\"]=",formRegistrazione.value["nome"]);
+	registrati(){
+		this.stampe()
 		
-		this.userService.addUsers(formRegistrazione.value["nome"])
+		this.userService.addUsers(this.formRegistrazione.value["nome"])
 
 		this.router.navigate(["/users"])
 	}
