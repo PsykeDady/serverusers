@@ -1,7 +1,7 @@
-input.ng-invalid{
+input.ng-invalid.controlli{
 	border-left: 0.5vw red solid;
 }
 
-input.ng-valid{
+input.ng-valid.controlli{
 	border-left: 0.5vw green solid;
 }
