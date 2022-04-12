@@ -10,15 +10,11 @@ import { UserService } from "src/app/services/User.service";
 	templateUrl:"register.component.html",
 	styleUrls:["register.component.css"]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
 	@ViewChild("formRegistrazione") formRegistrazione:NgForm;
 
 	constructor(public router:Router, public userService: UserService, public serverService: ServerService){}
-
-	ngOnInit(): void {
-		console.log(this.formRegistrazione)
-	}
 
 	stampe(){
 		console.log("NgForm=",this.formRegistrazione);
