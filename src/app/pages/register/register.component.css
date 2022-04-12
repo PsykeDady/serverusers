@@ -1,7 +1,15 @@
-input.ng-invalid.controlli{
+.ng-invalid.controlli-invalida-sinistra{
 	border-left: 0.5vw red solid;
 }
 
-input.ng-valid.controlli{
+.ng-valid.controlli-valida-sinistra{
 	border-left: 0.5vw green solid;
+}
+
+.ng-invalid.controlli-invalida{
+	border: 0.1vw red solid;
+}
+
+.ng-valid.controlli-valida{
+	border: 0.1vw green solid;
 }

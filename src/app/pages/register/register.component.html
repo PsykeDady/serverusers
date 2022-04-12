@@ -1,16 +1,32 @@
 <form action="" method="POST" role="form" #formRegistrazione="ngForm"  (ngSubmit)="registrati()">
 	<legend>Registration</legend>
 
-	<div class="form-group">
+	<div class="form-group" ngModelGroup="stoGruppo">
+
 		<label for="">Nome utente</label>
-		<input type="text" class="form-control controlli" id="" placeholder="Inserisci Nome" ngModel name="nome" required>
-	</div>
+		<input 
+			type="text" 
+			class="form-control controlli-valida-sinistra controlli-invalida-sinistra" 
+			id="" 
+			placeholder="Inserisci Nome" 
+			ngModel 
+			name="nome" 
+			required
+			#nomeUtente="ngModel"
+			>
+			<small class="text-muted bg-danger" *ngIf="nomeUtente.invalid && nomeUtente.touched"> Il nome utente non può essere vuoto! </small>
+		</div>
+		
+		
+		
+	<select class="form-control controlli-invalida" ngModel name="tipoAggiunta" id="" #tipoAggiunta="ngModel" required>
+		<option value="user">  User  </option>
+		<option value="server">Server</option>
+	</select>
+	<small class="text-muted bg-danger" *ngIf="tipoAggiunta.invalid && tipoAggiunta.touched"> Scegli tra User e Server </small>
 
 
-	<!-- <div class="form-group">
-		<label for="">Descrizione</label>
-		<input type="text" class="form-control" id="" placeholder="Inserisci Descrizione" ngModel name="Descrizione">
-	</div> -->
+	<br>
 
 	<button type="submit" class="btn btn-primary" [disabled]="formRegistrazione.invalid">Submit</button>
 </form>

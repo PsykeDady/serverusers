@@ -1,6 +1,8 @@
 import { Component, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
+import { ServerModel } from "src/app/models/ServerModel";
+import { ServerService } from "src/app/services/Servers.service";
 import { UserService } from "src/app/services/User.service";
 
 @Component({
@@ -12,8 +14,7 @@ export class RegisterComponent {
 
 	@ViewChild("formRegistrazione") formRegistrazione:NgForm;
 
-	constructor(public router:Router, public userService: UserService){
-	}
+	constructor(public router:Router, public userService: UserService, public serverService: ServerService){}
 
 	stampe(){
 		console.log("NgForm=",this.formRegistrazione);
@@ -24,9 +25,18 @@ export class RegisterComponent {
 
 	registrati(){
 		this.stampe()
-		
-		this.userService.addUsers(this.formRegistrazione.value["nome"])
+		let tipoAggiunta=this.formRegistrazione.value["tipoAggiunta"]; 
 
-		this.router.navigate(["/users"])
+		if (tipoAggiunta=="user"){
+			this.userService.addUsers(this.formRegistrazione.value["stoGruppo"]["nome"])
+
+			this.router.navigate(["/users"])
+		} else {
+			this.serverService.push(new ServerModel(this.formRegistrazione.value["stoGruppo"]["nome"],false))
+
+
+			this.router.navigate(["/servers"])
+		}
+		
 	}
 }
