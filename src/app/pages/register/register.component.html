@@ -1,0 +1,32 @@
+<div class="container-fluid">
+	
+	<br>
+	
+	<form class="form-group" [formGroup]='registrazioneForm' (ngSubmit)="submitta()">
+
+		<legend>Registrazione</legend>
+
+		<div class="row">
+			<div class="col-12">
+				<input type="text" 
+				class="form-control"
+				formControlName="nome">
+			</div>
+		</div>
+
+		<br>
+
+		<div class="row">
+			<div class="form-check" *ngFor="let tipo of tipiDiRegistrazione">
+				<input type="radio" class="form-check-input" [value]="tipo" formControlName="tipo">
+				<label class="form-check-label"> {{tipo}} </label>
+			</div>
+		</div>
+
+		<hr>
+		
+		<button type="submit" class="btn btn-success">
+		Submitta!
+		</button>
+	</form>
+</div>
