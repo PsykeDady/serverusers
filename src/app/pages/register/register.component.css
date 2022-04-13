@@ -14,3 +14,11 @@
 .ng-valid.controlli-valida{
 	border: 0.1vw green solid;
 }
+
+.box-allerta{
+	background-color: darkslategray;
+	border: black thin solid;
+	border-left: red thick solid;
+	color: lightgray;
+	padding-left: 5%;
+}

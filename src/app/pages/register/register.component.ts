@@ -13,17 +13,23 @@ import { UserService } from "src/app/services/User.service";
 export class RegisterComponent implements OnInit {
 
 	tipiDiRegistrazione:string[]=["user","server"]
-	registrazioneForm: FormGroup;
+	nomeForm: FormGroup;
 
 	ngOnInit(): void {
-		this.registrazioneForm = new FormGroup({
-			'nome':new FormControl(null, Validators.required),
+		this.nomeForm = new FormGroup({
+			"anagrafica": new FormGroup({
+				'nome':new FormControl(null, Validators.required),
+				'email':new FormControl(null, [Validators.required, Validators.email]),
+			}),
 			'tipo':new FormControl(null, Validators.required)
 		})
 	}
 
 	submitta(){
-		console.log(this.registrazioneForm.value)
+		console.log(this.nomeForm.value["anagrafica"]["nome"])
+		console.log(this.nomeForm.get(['anagrafica','nome']))
+		console.log(this.nomeForm.get('tipo'))
+		console.log(this.nomeForm.value)
 	}
 
 }

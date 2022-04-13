@@ -1,34 +1,66 @@
-<div class="container-fluid">
-	
+<form class="form-group container-fluid" [formGroup]='nomeForm' (ngSubmit)="submitta()">
+
 	<br>
-	
-	<form class="form-group" [formGroup]='registrazioneForm' (ngSubmit)="submitta()">
 
-		<legend>Registrazione</legend>
+	<legend class="row">Registrazione</legend>
 
+	<div formGroupName="anagrafica">
 		<div class="row">
-			<div class="col-12">
+			<div class="col-xs-12 col-md-3">
+				<label for="" class="text-muted">Nome:</label>
+			</div>
+	
+			<div class="col-xs-12 col-md-8">
 				<input type="text" 
 				class="form-control controlli-invalida-sinistra controlli-valida-sinistra"
 				formControlName="nome">
 			</div>
-		</div>
 
-		<br>
-
-		<div class="row">
-			<div class="form-check" *ngFor="let tipo of tipiDiRegistrazione">
-				<label class="form-check-label" [ngStyle]="{'color':registrazioneForm.value['tipo']?'':'red'}"> 
-					<input type="radio" class="form-check-input" [value]="tipo" formControlName="tipo">
-					{{tipo}}
-				</label>
+			<div class="col-xs-5 col-md-offset-3" *ngIf="nomeForm.get(['anagrafica','nome']).invalid&&nomeForm.get(['anagrafica','nome']).touched">
+				<br>
+				
+				<p class="box-allerta">
+					Il campo nome non può essere vuoto.
+				</p>
 			</div>
 		</div>
+	
+		<br>
+	
+		<div class="row">
+			<div class="col-xs-12 col-md-3">
+				<label for="" class="text-muted">Email:</label>
+			</div>
+	
+			<div class="col-xs-12 col-md-8">
+				<input type="text" 
+				class="form-control controlli-invalida-sinistra controlli-valida-sinistra"
+				formControlName="email">
+			</div>
+			<div class="col-xs-5 col-md-offset-3" *ngIf="nomeForm.get(['anagrafica','email']).invalid&&nomeForm.get(['anagrafica','email']).touched">
+				<br>
+				
+				<p class="box-allerta">
+					Il campo email non può essere vuoto.
+				</p>
+			</div>
+		</div>
+	</div>
 
-		<hr>
+	<br>
 
-		<button type="submit" class="btn btn-success">
-			Submitta!
-		</button>
-	</form>
-</div>
+	<div class="row">
+		<div class="form-check" *ngFor="let tipo of tipiDiRegistrazione">
+			<label class="form-check-label" [ngStyle]="{'color':nomeForm.get('tipo').valid?'':'red'}"> 
+				<input type="radio" class="form-check-input" [value]="tipo" formControlName="tipo">
+				{{tipo}}
+			</label>
+		</div>
+	</div>
+
+	<hr>
+
+	<button type="submit" class="btn btn-success">
+		Submitta!
+	</button>
+</form>
