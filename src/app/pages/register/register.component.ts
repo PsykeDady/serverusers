@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { FormControl, FormGroup, NgForm } from "@angular/forms";
+import { FormControl, FormGroup, NgForm, NgModelGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ServerModel } from "src/app/models/ServerModel";
 import { ServerService } from "src/app/services/Servers.service";
@@ -17,8 +17,8 @@ export class RegisterComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.registrazioneForm = new FormGroup({
-			'nome':new FormControl(null),
-			'tipo':new FormControl(null)
+			'nome':new FormControl(null, Validators.required),
+			'tipo':new FormControl(null, Validators.required)
 		})
 	}
 
