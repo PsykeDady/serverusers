@@ -12,6 +12,8 @@ import { UserService } from "src/app/services/User.service";
 })
 export class RegisterComponent implements OnInit {
 
+	constructor(private userService:UserService, private serverService: ServerService, private router:Router) {}
+
 	tipiDiRegistrazione:string[]=["user","server"]
 	nomeForm: FormGroup;
 
@@ -30,6 +32,14 @@ export class RegisterComponent implements OnInit {
 		console.log(this.nomeForm.get(['anagrafica','nome']))
 		console.log(this.nomeForm.get('tipo'))
 		console.log(this.nomeForm.value)
+
+		if(this.nomeForm.value['tipo']=="server"){
+			this.serverService.push(new ServerModel(this.nomeForm.value["anagrafica"]["nome"],false))
+			this.router.navigate(["/servers"])
+		} else {
+			this.userService.addUsers(this.nomeForm.value["anagrafica"]["nome"])
+			this.router.navigate(["/users"])
+		}
 	}
 
 }
