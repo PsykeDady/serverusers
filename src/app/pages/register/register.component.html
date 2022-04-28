@@ -19,7 +19,7 @@
 			<div class="col-xs-5 col-md-offset-3" *ngIf="nomeForm.get(['anagrafica','nome']).invalid&&nomeForm.get(['anagrafica','nome']).touched">
 				<br>
 				
-				<p class="box-allerta">
+				<p  class="box-allerta">
 					Il campo nome non può essere vuoto.
 				</p>
 			</div>
@@ -39,9 +39,11 @@
 			</div>
 			<div class="col-xs-5 col-md-offset-3" *ngIf="nomeForm.get(['anagrafica','email']).invalid&&nomeForm.get(['anagrafica','email']).touched">
 				<br>
-				
-				<p class="box-allerta">
-					Il campo email non può essere vuoto e deve essere un email.
+				<p class="box-allerta" *ngIf="nomeForm.get(['anagrafica','email']).errors['EmailInvalida']">
+					Il campo email non &egrave; valido
+				</p>
+				<p class="box-allerta" *ngIf="nomeForm.get(['anagrafica','email']).errors['EmailVuota']">
+					Il campo email non pu&ograve; essere vuoto
 				</p>
 			</div>
 		</div>

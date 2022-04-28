@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { FormArray, FormControl, FormGroup, NgForm, NgModelGroup, Validators } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ServerModel } from "src/app/models/ServerModel";
 import { ServerService } from "src/app/services/Servers.service";
@@ -16,12 +16,13 @@ export class RegisterComponent implements OnInit {
 
 	tipiDiRegistrazione:string[]=["user","server"]
 	nomeForm: FormGroup;
+	dominiValidi:string=["com","it","info","pizza","org"].reduce((pv,cv)=>{return `${pv}|${cv}`;})
 
 	ngOnInit(): void {
 		this.nomeForm = new FormGroup({
 			"anagrafica": new FormGroup({
 				'nome':new FormControl(null, Validators.required),
-				'email':new FormControl(null, this.validaEmailSerio),
+				'email':new FormControl(null, this.validaEmailSerio.bind(this)),
 			}),
 			'tipo':new FormControl(null, Validators.required),
 			'listaSkill' : new FormArray([])
@@ -63,12 +64,19 @@ export class RegisterComponent implements OnInit {
 	validaEmailSerio(formEmail:FormControl):{[s:string]:boolean}{
 
 		let testo:string=formEmail.value;
+		console.log("this.dominiValidi=",this.dominiValidi);
+		let regexText:string = `([a-zA-Z0-9]\\w*)@([a-zA-Z0-9]\\w*\\.)+(${this.dominiValidi})`;
+		console.log("regexText=",regexText);
+		let regex:RegExp= new RegExp(regexText,"g")
 
-		let verifica=  testo? testo.match(/[a-zA-Z0-9][a-zA-Z0-9_]*@([a-zA-Z0-9][a-zA-Z0-9_]*\.)+(com|it|info|pizza|org)/g) : null;
+		let verifica = testo? testo.match(regex) : null;
 
 		console.log("verifica=",verifica)
+		console.log("testo=",testo)
 		console.log("formEmail=",formEmail)
 
-		return verifica?null:{'l\'email non è valida':true, 'altromessaggio':false};
+		return verifica?null:{'EmailInvalida':testo?true:false, 'EmailVuota':testo?false:true};
 	}
+
+	
 }
