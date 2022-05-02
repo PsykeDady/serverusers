@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Observable } from "rxjs";
 import { ServerModel } from "src/app/models/ServerModel";
 import { ServerService } from "src/app/services/Servers.service";
 import { UserService } from "src/app/services/User.service";
@@ -22,11 +23,21 @@ export class RegisterComponent implements OnInit {
 		this.nomeForm = new FormGroup({
 			"anagrafica": new FormGroup({
 				'nome':new FormControl(null, Validators.required),
-				'email':new FormControl(null, this.validaEmailSerio.bind(this)),
+				'email':new FormControl(null, null, this.validaEmailAsincrono.bind(this)),
 			}),
 			'tipo':new FormControl(null, Validators.required),
 			'listaSkill' : new FormArray([])
 		})
+
+		this.nomeForm.get(["anagrafica","email"]).statusChanges.subscribe(nuovoStato=>{
+			console.log(nuovoStato)
+		})
+
+		this.nomeForm.get(["anagrafica","email"]).valueChanges.subscribe(nuovoValore=>{
+			console.log(nuovoValore)
+		})
+
+		this.nomeForm.get(["anagrafica","email"]).setValue("@.")
 	}
 
 	submitta():void{
@@ -76,6 +87,60 @@ export class RegisterComponent implements OnInit {
 		console.log("formEmail=",formEmail)
 
 		return verifica?null:{'EmailInvalida':testo?true:false, 'EmailVuota':testo?false:true};
+	}
+
+	validaEmailAsincrono(formEmail:FormControl):Promise<any>|Observable<any>{
+
+		// return new Promise<any>((resolve) => {
+		// 	let testo:string=formEmail.value;
+		// 	console.log("this.dominiValidi=",this.dominiValidi);
+		// 	let regexText:string = `([a-zA-Z0-9]\\w*)@([a-zA-Z0-9]\\w*\\.)+(${this.dominiValidi})`;
+		// 	console.log("regexText=",regexText);
+		// 	let regex:RegExp= new RegExp(regexText,"g")
+
+		// 	let verifica = testo? testo.match(regex) : null;
+
+		// 	console.log("verifica=",verifica)
+		// 	console.log("testo=",testo)
+		// 	console.log("formEmail=",formEmail)
+
+		// 	resolve(verifica?null:{'EmailInvalida':testo?true:false, 'EmailVuota':testo?false:true});
+			
+		// });
+		// return new Observable<any>((subscriber) => {
+		// 	let testo:string=formEmail.value;
+		// 	console.log("this.dominiValidi=",this.dominiValidi);
+		// 	let regexText:string = `([a-zA-Z0-9]\\w*)@([a-zA-Z0-9]\\w*\\.)+(${this.dominiValidi})`;
+		// 	console.log("regexText=",regexText);
+		// 	let regex:RegExp= new RegExp(regexText,"g")
+
+		// 	let verifica = testo? testo.match(regex) : null;
+
+		// 	console.log("verifica=",verifica)
+		// 	console.log("testo=",testo)
+		// 	console.log("formEmail=",formEmail)
+
+		// 	subscriber.next(verifica?null:{'EmailInvalida':testo?true:false, 'EmailVuota':testo?false:true});
+		// 	subscriber.complete();
+			
+		// });
+		return new Promise<any>((resolve) => {
+			setTimeout(()=> {
+				let testo:string=formEmail.value;
+				console.log("this.dominiValidi=",this.dominiValidi);
+				let regexText:string = `([a-zA-Z0-9]\\w*)@([a-zA-Z0-9]\\w*\\.)+(${this.dominiValidi})`;
+				console.log("regexText=",regexText);
+				let regex:RegExp= new RegExp(regexText,"g")
+			
+				let verifica = testo? testo.match(regex) : null;
+			
+				console.log("verifica=",verifica)
+				console.log("testo=",testo)
+				console.log("formEmail=",formEmail)
+			
+				resolve(verifica?null:{'EmailInvalida':testo?true:false, 'EmailVuota':testo?false:true});
+			}, 2500)		
+		});
 	}
 
 	

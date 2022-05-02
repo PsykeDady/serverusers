@@ -6,6 +6,10 @@
 	border-left: 0.5vw green solid;
 }
 
+.ng-pending.controlli-valida-sinistra,.ng-pending.controlli-invalida-sinistra{
+	border-left: 0.5vw #FFB300 solid;
+}
+
 .ng-invalid.controlli-invalida{
 	border: 0.1vw red solid;
 }
@@ -13,6 +17,10 @@
 
 .ng-valid.controlli-valida{
 	border: 0.1vw green solid;
+}
+
+.ng-pending.controlli-valida,.ng-pending.controlli-invalida{
+	border: 0.1vw #FFB300 solid;
 }
 
 .box-allerta{
